@@ -1,5 +1,6 @@
 const express = require("express");
 const fs = require("fs");
+const dotenv = require("dotenv");
 
 const error = require("./middleware/errors");
 const api = require("./middleware/api");
@@ -12,11 +13,14 @@ const videos = require("./data/videos");
 const users = require("./data/users");
 const comments = require("./data/comments")
 
+
 // Server Setup
 const app = express();
-const PORT = 8000;
 app.use(express.json());                        //TODO: Highlight in notes that you need this
 app.use(express.urlencoded({ extended: true })) //      otherwise req.body = undefined
+
+dotenv.config();
+const PORT = process.env.PORT || 8000;
 
 
 
