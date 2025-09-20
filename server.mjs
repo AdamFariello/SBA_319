@@ -2,6 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 
 import error from "./middleware/errors.mjs";
+import initTable from "./routes/initTable.mjs";
+
 
 // Setups
 const app = express();
@@ -11,6 +13,12 @@ app.use(express.urlencoded({extended: true}));
 dotenv.config();
 const PORT = process.env.PORT || 3001;
 
+
+// Routes
+app.get("/", (req, res) => {
+  res.json("Server is running");
+});
+app.use("/init", initTable)
 
 
 // Middleware Error handling
