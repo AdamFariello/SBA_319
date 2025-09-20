@@ -5,4 +5,14 @@
 ```bash
 git clone https://github.com/AdamFariello/SBA_319
 ```
-Then <code>cd</code> into the repository
+Then <code>cd</code> into the cloned repository
+
+### 2. Create .env file
+```bash
+echo "mongoURI = {INSERT MONGO URL}" >> .env
+```
+
+### 3. Start server
+```bash
+node server.mjs
+```
