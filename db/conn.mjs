@@ -19,6 +19,7 @@ try {
 }
 
 // choose database & export
-let db = conn.db('sample_training');
+//let db = conn.db('sample_training');
+let db = conn.db('pizza');
 
 export default db;
