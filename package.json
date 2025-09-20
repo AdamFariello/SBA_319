@@ -1,27 +1,26 @@
 {
-  "name": "sba-319",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "sba_319",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/AdamFariello/SBA_319#readme",
+  "bugs": {
+    "url": "https://github.com/AdamFariello/SBA_319/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdamFariello/SBA_319.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "express": "^5.1.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.35.0",
-    "@types/react": "^19.1.13",
-    "@types/react-dom": "^19.1.9",
-    "@vitejs/plugin-react": "^5.0.2",
-    "eslint": "^9.35.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^16.4.0",
-    "vite": "^7.1.6"
+    "nodemon": "^3.1.10"
   }
 }
