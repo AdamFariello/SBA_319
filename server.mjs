@@ -1,13 +1,26 @@
 import express from "express";
 import dotenv from "dotenv";
 
+import error from "./middleware/errors.mjs";
+
 // Setups
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 dotenv.config();
 const PORT = process.env.PORT || 3001;
 
 
+
+// Middleware Error handling
+app.use((req, res, next) => {
+  next(error(505, "Resources not found"));
+});
+app.use((err, req, res, next) => {
+  res.status(err.status || 400);
+  res.json({error: err.message});
+});
 
 // Listen
 app.listen(PORT, () => {
