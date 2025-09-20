@@ -1,8 +1,11 @@
 import db from "./conn.mjs";
 //import { ObjectID } from "mongodb";
 
-//const collection = db.collection
-
-export default async function startDatabase(req, res) {
-    db.createCollection("exampleEntry");
+export default async function initDatabase(req, res) {
+    /*
+    const colls = db.createCollection("test");
+    for await (const doc of colls) {
+        console.log(doc);
+    }
+    */
 }

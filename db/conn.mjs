@@ -1,20 +1,30 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, MongoParseError } from "mongodb";
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 // Load connectionString
-const connectionString = process.env.atlasURI || "";
+const connectionString = process.env.mongoURI || "";
 
+// TODO: MAKE THIS ONE TRY CATCH 
 // Create a new MongoClient
-const client = new MongoClient(connectionString);
+let client;
+try {
+    client = new MongoClient(connectionString);
+} catch (err) {
+    console.error(`[ERROR] -- ${err.message}`);
+    console.log("[SOLVE?] -- CHECK IF .env EXISTS");
+    console.log("[SOLVE?] -- IF EXISTS, MAKE SURE THE VARIABLE IS, 'mongoURI'");
+    process.exit(1);  
+}
+
 
 // Establist DB connection
 let conn;
-
 try {
     conn = await client.connect();
 } catch (err) {
-    console.error(err.message);
+    console.error(`[ERROR] -- ${err.message}`);
     process.exit(1);
 }
 

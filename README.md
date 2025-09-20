@@ -12,8 +12,13 @@ Then <code>cd</code> into the cloned repository
 echo "mongoURI = {INSERT MONGO URL}" >> .env
 ```
 
-### 3. Download files, and run the server
+### 3. Setup npm
 ```bash
+npm init -y
 npm install
+```
+
+### 4. Run the server
+```bash
 node server.mjs
 ```
