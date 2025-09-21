@@ -7,8 +7,12 @@ let userColl = db.collection("user");
 
 router.route("/")
       .get(async (req, res) => {
-        //let getUsers = await Users.find({}); // TODO: figure out why this doesn't work
-        let getUser = await userColl.find({}).toArray();
+        let getUser;
+        if(req.query.user) {
+            getUser = await userColl.find({"username":req.query.user}).toArray();
+        } else {
+            getUser = await userColl.find({}).toArray();
+        }
         res.json(getUser);
       })
 
