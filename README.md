@@ -26,4 +26,4 @@ node server.mjs
 
 ## Errors
 If the program gets hungup, that's because it's struggling to communicate to the mongodb server during the initializing.    
-Just restart the programa
+Just restart the server until it fills the mongodb database
