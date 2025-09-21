@@ -2,7 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 
 import error from "./middleware/errors.mjs";
-import initDatabase from "./db/initDatabase.mjs";
+//import initDatabase from "./initDatabase.mjs";
+
+import userRoutes from "./routes/userRoutes.mjs"
 
 // Setups
 const app = express();
@@ -13,13 +15,14 @@ dotenv.config();
 const PORT = process.env.PORT || 3001;
 
 // Creating the database
-initDatabase();
+//initDatabase();
 
 
 // Routes
 app.get("/", (req, res) => {
   res.json("Server is running");
 });
+app.use("/api/users", userRoutes)
 
 
 // Middleware Error handling

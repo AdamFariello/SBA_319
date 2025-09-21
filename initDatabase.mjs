@@ -1,8 +1,8 @@
-import db from "./conn.mjs";
+import db from "./db/conn.mjs";
 //import { ObjectID } from "mongodb";
-import {userData, pizzaData} from "./data.mjs";
+import {userData, pizzaData} from "./db/data.mjs";
 
-export default async function initDatabase(req, res) {
+export default async function initDatabase() {
     //console.log(`[DEBUG] -- Connection is ${db}`)
 
     // Create user table
@@ -53,3 +53,7 @@ export default async function initDatabase(req, res) {
     console.log(`[DEBUG] -- Finished with the while loop`);
     await mediaColl.insertMany(mediaCollEntrys);
 }
+
+console.log("Starting initializing of the database");
+initDatabase();
+console.log("Database has been initalized!")

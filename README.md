@@ -18,8 +18,15 @@ npm init -y
 npm install
 ```
 
-### 4. Run the server
+### 4. Initializing the database"
+Run this code as many times until it says, "Database has been initalized!"
 ```bash
+node initDatabase.mjs #
+```
+Only run this again if you want a clean slate with the data
+
+### 5. Staring 
+```bash 
 node server.mjs
 ```
 
