@@ -1,5 +1,5 @@
 
-const userData = [
+export const userData = [
     {username:"cchalliner0",password:"lK3+Y(HeOP8"},
     {username:"jellerman1",password:"mC3%0>(>d`~E!=k"},
     {username:"dcargill2",password:"mH6{12,9YcH1"},
@@ -15,14 +15,14 @@ const userData = [
     {username:"nlafayc",password:"eA6\wHf|L"},
     {username:"arichardind",password:"wN8(0Zt*O"},
     {username:"misaqe",password:"oR8<E4RTm,.xcbf"},
-    {username:"mbonasf",password:"tP8\A`PY"},
+    {username:"mbonasf",password:"tP8PY"},
     {username:"gszapirog",password:"lO5*qf$>OvIq/jP"},
     {username:"aaitonh",password:"cD6{$LJ#vHg@"},
     {username:"feouzani",password:"xA5|2~>_KLRJe"},
     {username:"abridywaterj",password:"gZ9/~'F4zKO/"},
 ]
 
-const pizzaData=[
+export const pizzaData=[
     {pizzaName:"Margherita",pizzaLink:"http://dummyimage.com/209x100.png/cc0000/ffffff"},
     {pizzaName:"Pepperoni",pizzaLink:"http://dummyimage.com/101x100.png/cc0000/ffffff"},
     {pizzaName:"Four",pizzaLink:"http://dummyimage.com/218x100.png/cc0000/ffffff"},
@@ -46,4 +46,4 @@ const pizzaData=[
 ]
 
 
-module.export({userData});
+//module.export({userData, pizzaData});
