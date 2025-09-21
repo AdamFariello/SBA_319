@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 
 import error from "./middleware/errors.mjs";
-//import initDatabase from "./initDatabase.mjs";
+import initDatabase from "./initDatabase.mjs";
 
 import userRoutes from "./routes/userRoutes.mjs"
 

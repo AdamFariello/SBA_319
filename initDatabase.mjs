@@ -1,6 +1,8 @@
 import db from "./db/conn.mjs";
 //import { ObjectID } from "mongodb";
 import {userData, pizzaData} from "./db/data.mjs";
+import { fileURLToPath } from "url";
+
 
 export default async function initDatabase() {
     //console.log(`[DEBUG] -- Connection is ${db}`)
@@ -54,6 +56,12 @@ export default async function initDatabase() {
     await mediaColl.insertMany(mediaCollEntrys);
 }
 
-console.log("Starting initializing of the database");
-initDatabase();
-console.log("Database has been initalized!")
+
+// This if statement prevents the script being run when inported.
+// This is the python equivalent of if(__main__)
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+    console.log("Starting initializing of the database");
+    initDatabase();
+    console.log("Database has been initalized!");
+    process.exit(); //TODO: figure out if this is a bad idea
+}
