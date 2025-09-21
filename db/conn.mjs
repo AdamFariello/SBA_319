@@ -1,5 +1,6 @@
 import { MongoClient, MongoParseError } from "mongodb";
 import dotenv from 'dotenv';
+import mongoose from "mongoose";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ try {
 let conn;
 try {
     conn = await client.connect();
+    await mongoose.connect(connectionString);
 } catch (err) {
     console.error(`[ERROR] -- ${err.message}`);
     process.exit(1);

@@ -13,6 +13,7 @@ router.route("/")
             getUser = await userColl.find({"username":req.query.user}).toArray();
         } else {
             getUser = await userColl.find({}).toArray();
+            //getUser = await Users.find({}); //TODO: figure out why the mongoose is giving blanks
         }
         res.json(getUser);
       })
@@ -38,6 +39,11 @@ router.route("/")
           }
           userColl.insertOne(newUser);
           res.json(newUser);
+        } else { res.json("ERROR: missing username or password")}
+      })
+      .delete(async (req, res) => {
+        if (req.body.username && req.body.password) {
+          //let deleteUSer = await Users.findBy
         } else { res.json("ERROR: missing username or password")}
       })
 
