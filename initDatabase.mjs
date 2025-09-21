@@ -52,8 +52,9 @@ export default async function initDatabase() {
         };
         mediaCollEntrys.push(obj);
     }
-    console.log(`[DEBUG] -- Finished with the while loop`);
+
     await mediaColl.insertMany(mediaCollEntrys);
+    console.log("Database has been initalized!")
 }
 
 
@@ -61,7 +62,7 @@ export default async function initDatabase() {
 // This is the python equivalent of if(__main__)
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
     console.log("Starting initializing of the database");
-    initDatabase();
-    console.log("Database has been initalized!");
+    await initDatabase();
+    //console.log("[DEBUG] -- If statement");
     process.exit(); //TODO: figure out if this is a bad idea
 }
