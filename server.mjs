@@ -7,6 +7,7 @@ import loggingMiddleWare from "./middleware/loggingMiddleWare.mjs";
 
 import userRoutes from "./routes/userRoutes.mjs"
 import pizzaRoutes from "./routes/pizzaRoutes.mjs";
+import mediaRoutes from "./routes/mediaRoutes.mjs";
 
 // Setups
 const app = express();
@@ -25,8 +26,9 @@ const PORT = process.env.PORT || 3001;
 app.get("/", (req, res) => {
   res.json("Server is running");
 });
-app.use("/api/users", userRoutes)
-app.use("/api/pizza", pizzaRoutes)
+app.use("/api/users", userRoutes);
+app.use("/api/pizza", pizzaRoutes);
+app.use("/api/media", mediaRoutes);
 
 // Middleware Error handling
 app.use((req, res, next) => {
