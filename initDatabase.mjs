@@ -8,12 +8,12 @@ import { userValidator } from "./db/validator.mjs";
 export default async function initDatabase() {
     // Create user table
     let userColl = await db.collection("user");
-    //db.createCollection("user");
-    db.createCollection("user", userValidator); //Idk why this works if you add the call above
-    //let userColl = await db.collection("user");
+    try {
+        await db.createCollection("user", userValidator);
+    } catch (e) {}
     userColl.deleteMany({}); // Empties table so I can refresh with data
     await db.collection("user").insertMany(userData);
-
+    
 
     // Create pizza table
     db.createCollection("pizza");

@@ -32,5 +32,16 @@ node server.mjs
 
 
 ## Errors
-If the program gets hungup, that's because it's struggling to communicate to the mongodb server during the initializing.    
-Just restart the server until it fills the mongodb database
+### initDatabase taking too long
+Connection to the mongodb during initalizing (or re-initializing), can get stuck.   
+I don't know if it resolves itself since I'm patient -- just <code>ctrl-c</code> from the terminal and run it again.
+
+### Data validation
+When testing the POST method in userRoutes, you're gonna want to use a body such as this:
+```json
+{
+  "username":"username",
+  "password":"password"
+}
+```
+If you only include one, mongodb will reject it since of the collection's (schema) validator.
