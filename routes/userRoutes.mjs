@@ -27,7 +27,7 @@ router.route("/")
         }
         res.json(getUser);
       })
-      .post(async (req, res) => {
+      .post(async (req, res, next) => {
         if (req.body.username && req.body.password) {
           //TODO: Figure out sometime how to use mongoose.model to create an entry
           //let newUser = new mongoose.model("newUser", Users.schema.obj);
@@ -49,7 +49,7 @@ router.route("/")
         }
 
       })
-      .delete(async (req, res) => {
+      .delete(async (req, res, next) => {
         if (req.body.username && req.body.password) {
           let query = {
             username: String(req.body.username),
@@ -68,7 +68,7 @@ router.route("/")
           next(error(400, "ERROR: missing username or password"));
         }
       })
-      .patch(async(req, res) => {
+      .patch(async(req, res, next) => {
         /*
         {
           "username":"username",

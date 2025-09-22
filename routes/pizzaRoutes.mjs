@@ -18,7 +18,7 @@ router.route("/")
       })
 
 router.route("/:pizza/")
-      .get(async (req, res) => {
+      .get(async (req, res, next) => {
         let getPizza = await pizzaColl.find({"pizzaName":req.params.pizza}).toArray();
         
         if (getPizza.length != 0) { 

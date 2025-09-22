@@ -15,7 +15,8 @@ router.get("/", async (req, res) => {
         res.json(media);
 });
 router.route("/search")
-      .get(async (req, res) => {
+        //localhost:4000/api/media/search/?user=username&pizza=Margherita
+      .get(async (req, res, next) => {
         if (req.query.pizza && req.query.user) {
             let getPizza = await pizzaColl.find({"pizzaName":req.query.pizza}).toArray();
             res.json(getPizza);
