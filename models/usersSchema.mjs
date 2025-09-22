@@ -4,4 +4,5 @@ const usersSchema = new mongoose.Schema({
     username: {type: String, required: true},
     password: {type: String, required: true},
 })
+usersSchema.index({username:1});
 export default mongoose.model("Users", usersSchema);
