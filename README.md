@@ -1,4 +1,7 @@
 # SBA 319
+## What is this
+Concept server containing user submitted images of pizza being presented as unappetizing, and given a rating of unedible.
+
 
 ## Setting up the project
 ### 1. Cloning the project
@@ -29,6 +32,21 @@ Only run this again if you want a clean slate with the data
 ```bash 
 node server.mjs
 ```
+
+
+## Usage
+Concept server
+* "/" -- Check if server is running
+* "/api/users"
+* "/api/pizza"
+  * GET "/", gets all the pizzas. Adda a "?pizza=" for a specific pizza to look up"
+  * GET "/:pizza", search for pizza using parameter
+  * GET "/:pizza/ing", search for the pizza using parameter, get its img url 
+* "/api/media"
+  * GET "/", gets all entries
+  * GET "/searchraw" gets specific entry 
+
+
 
 
 ## Errors
