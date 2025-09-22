@@ -14,6 +14,12 @@ let userColl = db.collection("user");
   "username":"username",
   "password":"password"
 }
+//patch
+{
+  "username":"username",
+  "oldPassword":"password",
+  "newPassword":"dogmatica"
+}
 */
 
 router.route("/")
@@ -56,13 +62,6 @@ router.route("/")
         }
       })
       .patch(async(req, res, next) => {
-        /*
-        {
-          "username":"username",
-          "oldPassword":"password",
-          "newPassword":"dogmatica"
-        }
-        */
         if (req.body.username && req.body.oldPassword && req.body.newPassword) {
           if (req.body.oldPassword != req.body.newPassword) {
             let query = {

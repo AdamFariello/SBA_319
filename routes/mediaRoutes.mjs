@@ -53,16 +53,4 @@ router.route("/searchraw")
 
         } else {next(error(400, "ERROR: no query arguments given"));}
       });
-    
-/*
-router.route("/posts/users")
-      .get(async (req, res) => {
-        let media = await mediaColl.find({}).toArray();
-        let getPizza = await pizzaColl.find({}).toArray();
-        let userResult = await userColl.find({}).toArray();
-        
-        res.json(media);
-      })
-*/
-
 export default router;
