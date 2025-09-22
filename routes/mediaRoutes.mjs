@@ -19,6 +19,26 @@ router.route("/search")
       .get(async (req, res, next) => {
         if (req.query.pizza && req.query.user) {
             let getPizza = await pizzaColl.find({"pizzaName":req.query.pizza}).toArray();
+            let getUser = await userColl.find({"username":req.query.user}).toArray();
+            if (getPizza.length != 0 && getUser.length != 0) {
+                let getPizzaId = getPizza[0]["_id"];
+                let getUserId = getUser[0]["_id"];
+                
+                let getMedia = await media.find({
+                    username: ObjectId(getUserID),
+                    pizzaName: ObjectId(getPizzaID)
+                }).toArray();
+
+                if (getMedia.length != 0) {
+                    res.json(getMedia);
+                } else {
+                    next(error(404, "ERROR: No entry containing that pizza"));
+                }
+                
+            } else {
+                next(error(404, "ERROR: No pizza or username conaining that name was found"));    
+            }
+            
             res.json(getPizza);
         } else { 
             //res.json("ERROR: no query arguments given");
@@ -27,7 +47,7 @@ router.route("/search")
       });
     
 
-      router.route("/posts/users")
+router.route("/posts/users")
       .get(async (req, res) => {
         let media = await mediaColl.find({}).toArray();
         let getPizza = await pizzaColl.find({}).toArray();

@@ -20,13 +20,6 @@ router.route("/")
 router.route("/:pizza/")
       .get(async (req, res, next) => {
         let getPizza = await pizzaColl.find({"pizzaName":req.params.pizza}).toArray();
-        
-        if (getPizza.length != 0) { 
-            let getPizzaID = getPizza[0]["_id"];
-        } else {
-            //res.json("ERROR: no pizza like that found")
-            next(error(404, "ERROR: no pizza like that found"));
-        }
         res.json(getPizza);
       })
 

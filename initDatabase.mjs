@@ -41,8 +41,8 @@ export default async function initDatabase() {
         let pizzname;
         do {
             pizzname = await pizzaColl.aggregate([{$sample:{size:1}}]).toArray();
-        } while (username.length == [])
-        const pizzResult = username[0]["_id"];
+        } while (pizzname.length == [])
+        const pizzResult = pizzname[0]["_id"];
         
 
         let obj = {
