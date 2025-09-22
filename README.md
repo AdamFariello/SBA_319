@@ -38,6 +38,7 @@ node server.mjs
 Concept server
 * "/" -- Check if server is running
 * "/api/users"
+  * "/" -- GET, POST, Delete, PATCH
 * "/api/pizza"
   * GET "/", gets all the pizzas. Adda a "?pizza=" for a specific pizza to look up"
   * GET "/:pizza", search for pizza using parameter
