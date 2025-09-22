@@ -28,19 +28,13 @@ router.route("/")
         res.json(getUser);
       })
       .post(async (req, res, next) => {
-        if (req.body.username && req.body.password) {
-          //TODO: add a check to stop duplicate user entries
-          let newUser = {
-            "username": req.body.username,
-            "password": req.body.password
-          }
-          userColl.insertOne(newUser);
-          res.json(newUser);
-        } else { 
-          //res.json("ERROR: missing username or password");
-          next(error(400, "ERROR: missing username or password"))
+        try {
+          await userColl.insertOne(req.body);
+          res.json(req.body);
+        } catch (e) {
+          console.error(e);
+          next(error(400, e))
         }
-
       })
       .delete(async (req, res, next) => {
         if (req.body.username && req.body.password) {

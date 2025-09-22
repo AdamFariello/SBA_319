@@ -4,7 +4,7 @@ export const userValidator = {
             bsonType: "object",
             required: ["username", "password"],
             properties: {
-                name: {
+                username: {
                     bsonType: "string",
                     description: "must be a string and is required"
                 },
