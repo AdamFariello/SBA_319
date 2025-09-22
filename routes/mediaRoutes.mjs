@@ -14,19 +14,20 @@ router.get("/", async (req, res) => {
         let media = await mediaColl.find({}).toArray();
         res.json(media);
 });
-router.route("/search")
-        //localhost:4000/api/media/search/?user=username&pizza=Margherita
+router.route("/searchraw")
+        //localhost:4000/api/media/searchraw/?user=username&pizza=Margherita
+        //localhost:4000/api/media/searchraw/?user=arichardind&pizza=Buffalo
       .get(async (req, res, next) => {
         if (req.query.pizza && req.query.user) {
             let getPizza = await pizzaColl.find({"pizzaName":req.query.pizza}).toArray();
             let getUser = await userColl.find({"username":req.query.user}).toArray();
             if (getPizza.length != 0 && getUser.length != 0) {
-                let getPizzaId = getPizza[0]["_id"];
-                let getUserId = getUser[0]["_id"];
+                let getPizzaID = getPizza[0]["_id"];
+                let getUserID = getUser[0]["_id"];
                 
-                let getMedia = await media.find({
-                    username: ObjectId(getUserID),
-                    pizzaName: ObjectId(getPizzaID)
+                let getMedia = await mediaColl.find({
+                    username: getUserID, //ObjectId(getUserID),
+                    pizzaName: getPizzaID //ObjectId(getPizzaID)
                 }).toArray();
 
                 if (getMedia.length != 0) {
