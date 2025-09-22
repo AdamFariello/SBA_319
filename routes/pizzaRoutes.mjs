@@ -22,4 +22,13 @@ router.route("/:pizza/")
         res.json(getPizza);
       })
 
+router.get("/:pizza/img", async(req, res) => {
+    res.redirect(`/api/pizza/${req.params.pizza}/image`)
+});
+router.route("/:pizza/image")
+      .get(async (req, res) => {
+        let getPizza = await pizzaColl.find({"pizzaName":req.params.pizza}).toArray();
+        res.json({"pizzaLink": getPizza[0]["pizzaLink"]});
+      })
+
 export default router;

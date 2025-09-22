@@ -2,7 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 
 import error from "./middleware/errors.mjs";
-import initDatabase from "./initDatabase.mjs";
+import loggingMiddleWare from "./middleware/loggingMiddleWare.mjs"; 
+//import initDatabase from "./initDatabase.mjs";
 
 import userRoutes from "./routes/userRoutes.mjs"
 import pizzaRoutes from "./routes/pizzaRoutes.mjs";
@@ -11,6 +12,7 @@ import pizzaRoutes from "./routes/pizzaRoutes.mjs";
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(loggingMiddleWare);
 
 dotenv.config();
 const PORT = process.env.PORT || 3001;
