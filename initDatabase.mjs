@@ -52,8 +52,29 @@ export default async function initDatabase() {
         };
         mediaCollEntrys.push(obj);
     }
-
     await mediaColl.insertMany(mediaCollEntrys);
+
+    /* //TODO: figure out why this doesn't exist anymore
+    db.createView("post", "media", [ 
+        {
+            $lookup: {
+                from: "pizza",
+                localField: "_id",
+                foreignField: "pizzaID",
+                as: "pizzaID"
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                pizzaID: 1, 
+                userSubmitID: 1,
+                appetizingScore: 1
+            }
+        }
+    ]);
+    */
+
     console.log("Database has been initalized!")
 }
 

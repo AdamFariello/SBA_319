@@ -3,6 +3,8 @@ import Users from "../models/usersSchema.mjs";
 import db from "../db/conn.mjs";
 import mongoose from "mongoose";
 
+import error from "../middleware/errors.mjs";
+
 const router = express.Router(); 
 let userColl = db.collection("user");
 
@@ -41,7 +43,11 @@ router.route("/")
           }
           userColl.insertOne(newUser);
           res.json(newUser);
-        } else { res.json("ERROR: missing username or password")}
+        } else { 
+          //res.json("ERROR: missing username or password");
+          next(error(400, "ERROR: missing username or password"))
+        }
+
       })
       .delete(async (req, res) => {
         if (req.body.username && req.body.password) {
@@ -54,9 +60,13 @@ router.route("/")
           if (result["deletedCount"]) {
             res.json(result);
           } else {
-            res.json("Error occured, user wasn't deleted");
+            //res.json("Error occured, user wasn't deleted");
+            next(error(400, "Error occured, user wasn't deleted"));
           }
-        } else { res.json("ERROR: missing username or password")}
+        } else { 
+          //res.json("ERROR: missing username or password");
+          next(error(400, "ERROR: missing username or password"));
+        }
       })
       .patch(async(req, res) => {
         /*
@@ -74,7 +84,10 @@ router.route("/")
           let updateObject = { $set: { password: req.body.newPassword } };
           let result = await userColl.updateOne(query, updateObject)  
           res.json(result);       
-        } else { res.json("ERROR: missing username, old password, and/or new password") }
+        } else { 
+          //res.json("ERROR: missing username, old password, and/or new password");
+          next(error(400, "ERROR: missing username, old password, and/or new password")); 
+        }
       })
 
 router.route("/:user")
