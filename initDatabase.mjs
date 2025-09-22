@@ -2,14 +2,15 @@ import db from "./db/conn.mjs";
 //import { ObjectID } from "mongodb";
 import {userData, pizzaData} from "./db/data.mjs";
 import { fileURLToPath } from "url";
+import { userValidator } from "./db/validator.mjs";
 
 
 export default async function initDatabase() {
-    //console.log(`[DEBUG] -- Connection is ${db}`)
-
     // Create user table
-    db.createCollection("user");
     let userColl = await db.collection("user");
+    //db.createCollection("user");
+    db.createCollection("user", userValidator); //Idk why this works if you add the call above
+    //let userColl = await db.collection("user");
     userColl.deleteMany({}); // Empties table so I can refresh with data
     await db.collection("user").insertMany(userData);
 
@@ -53,28 +54,6 @@ export default async function initDatabase() {
         mediaCollEntrys.push(obj);
     }
     await mediaColl.insertMany(mediaCollEntrys);
-
-    /* //TODO: figure out why this doesn't exist anymore
-    db.createView("post", "media", [ 
-        {
-            $lookup: {
-                from: "pizza",
-                localField: "_id",
-                foreignField: "pizzaID",
-                as: "pizzaID"
-            }
-        },
-        {
-            $project: {
-                _id: 0,
-                pizzaID: 1, 
-                userSubmitID: 1,
-                appetizingScore: 1
-            }
-        }
-    ]);
-    */
-
     console.log("Database has been initalized!")
 }
 
