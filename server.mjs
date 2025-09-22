@@ -5,6 +5,7 @@ import error from "./middleware/errors.mjs";
 import initDatabase from "./initDatabase.mjs";
 
 import userRoutes from "./routes/userRoutes.mjs"
+import pizzaRoutes from "./routes/pizzaRoutes.mjs";
 
 // Setups
 const app = express();
@@ -23,7 +24,7 @@ app.get("/", (req, res) => {
   res.json("Server is running");
 });
 app.use("/api/users", userRoutes)
-
+app.use("/api/pizza", pizzaRoutes)
 
 // Middleware Error handling
 app.use((req, res, next) => {

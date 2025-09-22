@@ -6,6 +6,14 @@ import mongoose from "mongoose";
 const router = express.Router(); 
 let userColl = db.collection("user");
 
+/*
+//Use for testing body messages
+{
+  "username":"username",
+  "password":"password"
+}
+*/
+
 router.route("/")
       .get(async (req, res) => {
         let getUser;
@@ -27,12 +35,6 @@ router.route("/")
           //await db.collection("pizza").insertMany(pizzaData);
 
           //TODO: add a check to stop duplicate user entries
-          /*
-          {
-            "username":"username",
-            "password":"password"
-          }
-          */
           let newUser = {
             "username": req.body.username,
             "password": req.body.password
@@ -43,8 +45,36 @@ router.route("/")
       })
       .delete(async (req, res) => {
         if (req.body.username && req.body.password) {
-          //let deleteUSer = await Users.findBy
+          let query = {
+            username: String(req.body.username),
+            password: String(req.body.password)
+          }
+          let result = await userColl.deleteOne(query);
+
+          if (result["deletedCount"]) {
+            res.json(result);
+          } else {
+            res.json("Error occured, user wasn't deleted");
+          }
         } else { res.json("ERROR: missing username or password")}
+      })
+      .patch(async(req, res) => {
+        /*
+        {
+          "username":"username",
+          "oldPassword":"password",
+          "newPassword":"dogmatica"
+        }
+        */
+        if (req.body.username && req.body.oldPassword && req.body.newPassword) {
+          let query = {
+            username: String(req.body.username),
+            password: String(req.body.oldPassword)
+          }
+          let updateObject = { $set: { password: req.body.newPassword } };
+          let result = await userColl.updateOne(query, updateObject)  
+          res.json(result);       
+        } else { res.json("ERROR: missing username, old password, and/or new password") }
       })
 
 router.route("/:user")
